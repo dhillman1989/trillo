@@ -13,6 +13,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media only screen and (max-width: $bp-small) {
+    order: 1;
+    flex: 0 0 100%;
+  }
   &__input {
     background-color: var(--grey-light-2);
     font-family: inherit;
@@ -24,6 +29,10 @@
     width: 90%;
     transition: all 0.2s;
     margin-right: -3.5rem;
+
+    @media only screen and (max-width: $bp-small) {
+      width: 100%;
+    }
 
     &:focus {
       outline: none;
@@ -38,11 +47,11 @@
   }
 
   &__input:focus + &__button {
-    background-color: var(--grey-light-1);
+    background-color: var(--grey-light-2);
   }
 
   &__button {
-    background-color: var(--grey-light-1);
+    background-color: var(--grey-light-2);
     border: none;
 
     &:focus {
@@ -124,15 +133,27 @@
   font-size: 1.4rem;
   margin-top: 3.5rem;
 
+  @media only screen and (max-width: $bp-medium) {
+    display: flex;
+    margin: 0;
+  }
+
   &__item {
     position: relative;
     &:not(:last-child) {
       margin-bottom: 0.5rem;
+
+      @media only screen and (max-width: $bp-medium) {
+        margin: 0;
+      }
+    }
+    @media only screen and (max-width: $bp-medium) {
+      flex: 1;
     }
   }
 
   &__item::before {
-    content: "";
+    content: '';
     position: absolute;
     left: 0;
     top: 0;
@@ -161,6 +182,11 @@
     align-items: center;
     position: relative;
     z-index: 10;
+
+    @media only screen and (max-width: $bp-medium) {
+      justify-content: center;
+      padding: 2rem;
+    }
   }
 
   &__item:active::before {
@@ -183,6 +209,10 @@
   text-align: center;
   padding: 2.5rem;
   color: var(--grey-light-4);
+
+  @media only screen and (max-width: $bp-medium) {
+    display: none;
+  }
 }
 
 /////////////////////////////
@@ -245,6 +275,10 @@
     justify-content: center;
     flex-direction: column;
     padding: 0 2.5rem;
+
+    @media only screen and (max-width: $bp-small) {
+      padding: 0 1.5rem;
+    }
   }
 
   &__rating-average {
@@ -334,7 +368,7 @@
   }
 
   &__item::before {
-    content: "";
+    content: '';
     display: inline-block;
     height: 1rem;
     width: 1rem;
@@ -362,6 +396,10 @@
   font-size: 1.3rem;
   color: var(--grey-dark-3);
 
+  &__friends {
+    display: flex;
+  }
+
   &__photo {
     box-sizing: content-box;
     height: 4rem;
@@ -370,7 +408,7 @@
     border-radius: 50%;
 
     &:not(:last-child) {
-      margin-right: -1.5rem;
+      margin-right: -2rem;
     }
   }
 
@@ -392,8 +430,13 @@
   position: relative;
   overflow: hidden;
 
+  @media only screen and (max-width: $bp-medium) {
+    margin: 2rem;
+    padding: 2rem;
+  }
+
   &::before {
-    content: "\201C";
+    content: '\201C';
     position: absolute;
     top: -2.4rem;
     left: -0.8rem;
@@ -438,5 +481,75 @@
   &__rating {
     font-size: 2.2rem;
     color: var(--color-primary);
+  }
+}
+
+//////////////
+/// CALL TO ACTION - CTA
+
+.cta {
+  padding: 3.5rem 0;
+  text-align: center;
+
+  &__book-now {
+    text-transform: uppercase;
+    font-size: 2rem;
+    font-weight: 300;
+    margin-bottom: 2.5rem;
+    line-height: 2.4rem;
+
+    @media only screen and (max-width: $bp-small) {
+      font-size: 1.6rem;
+    }
+  }
+}
+
+.btn {
+  border: none;
+  color: #fff;
+  font-weight: 300;
+  font-size: 1.5rem;
+  border-radius: 10rem;
+  text-transform: uppercase;
+  background-image: linear-gradient(
+    to left,
+    var(--color-primary-dark),
+    var(--color-primary-light)
+  );
+  position: relative;
+  overflow: hidden;
+  outline: none;
+  cursor: pointer;
+
+  &:hover {
+    animation: pulsate 1s infinite;
+  }
+
+  &__visible {
+    display: inline-block;
+    padding: 2rem 7.5rem;
+    transition: all 0.2s;
+    height: 100%;
+    width: 100%;
+  }
+
+  &__invisible {
+    display: inline-block;
+    position: absolute;
+    top: -100%;
+    left: 0;
+    padding: 2rem 0;
+    height: 100%;
+    width: 100%;
+    transition: all 0.2s;
+  }
+
+  &:hover &__visible {
+    top: 100%;
+    transform: translateY(100%);
+  }
+
+  &:hover &__invisible {
+    top: 0;
   }
 }
